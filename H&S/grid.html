@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3 , 1fr);
+            grid-auto-rows: 100px;
+            gap: 10px;
+            width: 500px;
+            margin: 0 auto;
+        }
+
+        .img-box {
+            box-shadow: 1px 2px 3px 2px #0001;
+            font-size: 2rem;
+        }
+
+        .img-box > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .img-box:nth-child(1){
+            grid-column: 1/3;
+            grid-row: 1;
+        }
+
+        .img-box:nth-child(2){
+            grid-row: 5;
+            grid-column: 3;
+        }
+
+        .img-box:nth-child(3){
+            grid-row: 1/3;
+        }
+
+        .img-box:nth-child(6){
+            grid-row: 5;
+            grid-column: 1/3;
+        }
+
+        .img-box:nth-child(8){
+            grid-column: 2/4;
+            grid-row: 3;
+        }
+
+        .img-box:nth-child(9){
+            grid-column: 1/4;
+            grid-row: 4;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid">
+        <div class="img-box">
+            <!-- <img src="images/icon1.png" alt="1"> -->
+            1
+        </div>
+        <div class="img-box">
+            <!-- <img src="images/icon2.png" alt="2"> -->
+            2
+        </div>
+        <div class="img-box">
+            <!-- <img src="images/icon3.png" alt="3"> -->
+            3
+        </div>
+        <div class="img-box">
+            <!-- <img src="images/images(1).jpg" alt="4"> -->
+            4
+        </div>
+        <div class="img-box">
+            <!-- <img src="images/images(2).jpg" alt="5"> -->
+            5
+        </div>
+        <div class="img-box">
+            <!-- <img src="images/images(3).jpg" alt="6"> -->
+            6
+        </div>
+        <div class="img-box">
+            <!-- <img src="images/LOGO.jpg" alt="7"> -->
+            7
+        </div>
+        <div class="img-box">
+            <!-- <img src="images/PARTNER.jpg" alt="8"> -->
+            8
+        </div>
+        <div class="img-box">
+            <!-- <img src="images/PARTNER_UP.png" alt="9"> -->
+            9
+        </div>
+    </div>
+</body>
+</html>

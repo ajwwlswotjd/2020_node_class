@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ fullAddress }}</h1>
+        <input type="text" v-model="frontAddress" placeholder="도로명주소">
+        <input type="text" v-model="detailAddress" placeholder="상세주소">
+    </div>
+
+    <script>
+        let v = new Vue({
+
+            el : "#app",
+            mounted(){
+
+            },
+            data : {
+                fullAddress : '',
+                frontAddress : '',
+                detailAddress : ''
+            },
+            watch : {
+                frontAddress(val){
+
+                    this.fullAddress = val + " " + this.detailAddress;
+                    
+                },
+                detailAddress(val){
+                    this.fullAddress = this.frontAddress + " " + val;
+                }
+            },
+            methods : {
+                
+            },
+
+
+        });
+    </script>
+</body>
+</html>

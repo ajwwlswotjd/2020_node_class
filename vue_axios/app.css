@@ -1,0 +1,13 @@
+.sc-enter-active, .sc-leave-active {
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.sc-enter {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.sc-leave-to {
+    opacity: 0;
+    transform: translateX(-100%);
+}

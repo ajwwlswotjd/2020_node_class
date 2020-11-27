@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .on {
+            background-color: #64b5f6;
+        }
+        .item {
+            transition:all 0.3s;
+        }
+        .fix {
+            background-color: red;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        컨텐츠입니다.
+    </div>
+    <button id="btnStop">정지</button>
+    <ul id="userList">
+        
+    </ul>
+    <script>
+        let nameList = ["박태양","강은진","김가현","김영현","김찬영","김창현","박민지","박명재","박수진","박지호","이수안","안진우","이유진","이준영","임상언","임채영","전제","정나영","정재성","최승민","하늘새미","한다원","조한슬"];
+        const userList = document.querySelector("#userList");
+        userList.innerHTML = nameList.map(x=> makeTemplate(x)).join('');
+
+        let list = document.querySelectorAll(".item");
+        let before = list[0];
+        let idx = 0;
+        let timer = setInterval(()=> {
+            move();
+        }, 50);
+
+        document.querySelector("#btnStop").addEventListener("click", e => {
+            clearInterval(timer);
+            stopTimeOut(50);
+        });
+
+        function stopTimeOut(time){
+            if(time >= 1000){
+                list[idx].classList.add("fix");
+                return;
+            }
+            setTimeout( ()=> {
+                move();
+                stopTimeOut(time + 50);
+            }, time);
+        }
+
+        function makeTemplate(user){
+            let li = document.createElement("li");
+            li.classList.add("item");
+            li.innerHTML = user;
+            return li.outerHTML;
+        }
+
+        function move(){
+            idx++;
+            if(idx >= list.length){
+                idx = 0;
+            }
+            before.classList.remove("on");
+            list[idx].classList.add("on");
+            before = list[idx];
+        }
+    </script>
+</body>
+</html>

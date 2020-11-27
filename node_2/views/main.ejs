@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Document</title>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div class="container">
+        <ul id="chatlist">
+
+        </ul>
+
+        <div class="row d-flex">
+            <input type="text" id="msg" class="form-control col-9">
+            <button id="btnSend" class="btn btn-primary">보내기</button>
+        </div>
+
+        <script>
+            const MSG_INPUT = document.querySelector("#msg");
+            const BTN = document.querySelector("#btnSend");
+            const CHAT_LIST = document.querySelector("#chatlist");
+            const socket = new io();
+
+            MSG_INPUT.addEventListener("keydown",(e)=>{
+                if(e.keyCode === 13) BTN.click();
+            });
+
+            BTN.addEventListener("click",(e)=>{
+                socket.emit('SEND_MSG',MSG_INPUT.value);
+            });
+
+
+            socket.on('SERVER_MSG', data => {
+                let li = document.createElement('li');
+                li.innerHTML = data;
+                CHAT_LIST.appendChild(li);
+            });
+            
+        </script>
+    </div>
+</body>
+</html>

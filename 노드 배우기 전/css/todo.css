@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    grid-template-rows: 100px 400px 80px;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+#list {
+    padding: 20px;
+    overflow-y: scroll;
+    height: 100%;
+    display: grid;
+    grid-auto-rows: 150px;
+    grid-gap: 10px;
+}
+
+#list::-webkit-scrollbar {
+    display: none;
+}
+
+@media screen and (max-width:768px) {
+    #main {
+        grid-template-columns: 1fr;
+        grid-template-rows: 400px 100px;
+    }
+}
+
+.item {
+    user-select: none;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transform: scaleY(1);
+    transform-origin: top;
+    opacity: 1;
+    transition:  all .8s;
+}
+
+.item.off {
+    opacity: 0;
+    transform: scaleY(0);
+}
+
+.item>.title {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.item>.msg {
+    font-size: 15px;
+    color: #777;
+}
+
+#menu {
+    display: grid;
+    grid-template-rows: 200px 100px;
+    grid-gap: 10px;
+    padding: 20px;
+}
+
+#addForm {
+    display: grid;
+    grid-template-rows: 40px 1fr 40px;
+    grid-gap: 10px;
+}
+
+.form-group {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+.form-group>* {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#addForm input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#addForm textarea {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+#garbage {
+    border: 1px solid #ddd;
+    font-size: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.msg-box {
+    position: fixed;
+    padding: 20px 24px;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%, 200%);
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 0.7rem;
+    transition : all .5s;
+}
+
+.msg-box.on {
+    transform: translate(-50%, 0);   
+}

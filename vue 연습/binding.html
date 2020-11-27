@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+        .active {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .disable {
+            background-color: #6c757d;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="item" :class="itemClass">어서오고</div>
+        <button @click = " itemClass.active = true;  itemClass.disable = false; "> 활성화   </button>
+        <button @click = " itemClass.active = false; itemClass.disable = true;  "> 비활성화 </button>
+        <button @click = " itemClass.active = false; itemClass.disable = false; "> 정상화   </button>
+    </div>
+    <script>
+
+        window.log = console.log;
+
+        let v = new Vue({
+            el : "#app",
+            data : {
+                itemClass : {
+                    active : false,
+                    disable : false
+                }
+            },
+            methods : {
+
+            }
+
+        });
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{
+  "name": "vueserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode=development",
+    "prod": "webpack --mode=production",
+    "watch": "webpack --watch",
+    "server": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^5.0.0",
+    "file-loader": "^6.2.0",
+    "nodemon": "^2.0.6",
+    "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
+    "vue-loader": "^15.9.4",
+    "vue-router": "^3.4.8",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^5.3.0",
+    "webpack-cli": "^4.1.0"
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.5.3",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mysql2": "^2.2.5",
+    "sweetalert2": "^10.8.1",
+    "vue": "^2.6.12"
+  }
+}

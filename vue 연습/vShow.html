@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+
+
+        .list-item {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .list-enter-active, .list-leave-active {
+            transition: all 1s;
+        }
+
+        .list-enter, .list-leave-to {
+            opacity: 0;
+            transform: translateY(30px)
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="add">삽입</button>
+        <transition-group name="list" tag="div">
+            <div v-for="item in list" :key="item.id">
+                {{item.name}} <button @click="del(item.id)">삭제</button>
+            </div>
+        </transition-group>
+    </div>
+
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                list:[
+                    {id:1, name:'최선한1', age:33},
+                    {id:2, name:'최선한2', age:34},
+                    {id:3, name:'최선한3', age:35},
+                    {id:4, name:'최선한4', age:36},
+                    {id:5, name:'최선한5', age:37},
+                    {id:6, name:'최선한6', age:38},
+                ]
+            },
+            methods:{
+                add(){
+                    this.list.push({id:this.maxId, name:"최선한"+ this.maxId, age:40});
+                },
+                del(id){
+                    this.list.filter( x => x.id !== id );
+                }
+            },
+            computed:{
+                maxId(){
+                    //리스트에 있는 것중 id 를 뽑아서 Math.max로 최대값을 뽑아낸다.
+                    return Math.max(...this.list.map(x => x.id)) + 1;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

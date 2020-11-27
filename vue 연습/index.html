@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+
+        #list {
+            width: 800px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 12px;
+            box-shadow: 1px 2px 3px 2px #0001;
+            border-radius: 0.5rem;
+            align-items: center;
+        }
+
+        .item > button {
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 0.5rem;
+            border:none;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        .item > button:hover {
+            background-color: #0069d9;
+        }
+
+        #popup {
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 100%;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #0007;
+        }
+
+        .custom_btn {
+            all: unset;
+            margin-top: 2rem;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 0.5rem;
+            cursor: pointer;
+        }
+
+        .custom_btn:hover {
+            background-color: #0069d9;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+       <div id="list">
+            <div class="item" v-for="user in userList">
+                <span>{{user.id}} : {{user.name}}</span>
+                <button @click="remove(user.id)">삭제</button>
+            </div>
+       </div> 
+
+       <button @click="popupShow = true" class="custom_btn">추가하기</button>
+
+
+       <div id="popup" v-if="popupShow">
+            <input type="text" v-model="name">
+            <button @click="addUser()" class="custom_btn" style="margin-right: 0.2rem;">완료</button>    
+            <button @click="popupShow = false" class="custom_btn">취소</button>    
+       </div>
+
+    </div>
+
+    <script>
+        window.log = console.log;
+
+        let v = new Vue({
+            
+            el : "#app",
+            mounted(){
+
+            },
+            data : {
+                userList : [
+                    {id: 1, name : "이수안"},
+                    {id: 2, name : "임채영"},
+                    {id: 3, name : "임상언"},
+                    {id: 4, name : "김영현"}
+                ],
+                popupShow : false,
+                name : ''
+            },
+            computed : {
+
+                maxId(){
+                    return Math.max( ...this.userList.map(user => user.id) );
+                }
+
+            },
+            methods : {
+                remove(id){
+                    let idx = this.userList.findIndex( user => user.id === id );
+                    document.querySelectorAll("#list > .item")[idx].remove();
+                },
+
+                addUser(){
+                    if(this.name === "") return;
+                    let id = this.maxId + 1;
+                    this.userList.push( { id : id, name : this.name } );
+                    this.name = "";
+                    this.popupShow = false;
+                }
+            }
+
+        });
+    </script>
+</body>
+</html>

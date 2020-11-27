@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>채팅서버</title>
+    <link rel="stylesheet" href="/app.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="/app.js"></script>
+</head>
+
+<body>
+    <div class="container d-flex">
+        <div class="wrapper">
+            <div class="menu-box">
+                <div id="chat">
+                    <div id="msgBox">
+
+                        <!-- <div class="msg">
+                            <div class="msg_inner">
+                                <div class="msg_user">정재성</div>                            
+                                <div class="msg_content">
+                                    ㄹㅇ ㅋㅋ
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="msg my">
+                            <div class="msg_inner my">
+                                <div class="msg_content">
+                                    ㄹㅇ ㅋㅋ#msgBoxㄹㅇ ㅋㅋ#msgBoxㄹㅇ ㅋㅋ#msgBoxㄹㅇ ㅋㅋ#msgBoxㄹㅇ ㅋㅋ#msgBoxㄹㅇ ㅋㅋ#msgBoxㄹㅇ ㅋㅋ#msgBoxㄹㅇ ㅋㅋ#msgBox
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="msg broadcast">
+                            <div class="msg_inner broadcast">
+                                <div class="msg_content">
+                                    정재성인척하는정재성인척하는정재성님이 입장하셨습니다.
+                                </div>
+                            </div>
+                        </div> -->
+
+                    </div>
+                    <div id="inputBox" class="row d-flex justify-content-center">
+                        <input type="text" id="msg" class="form-control col-11" placeholder="메시지 입력">
+                        <button id="btnSend" class="btn btn-primary col-1">전송</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="userList">
+            <!-- <div class="user my">User1</div>
+            <div class="user">정재성인척하는정재성인척하는정재성</div> -->
+        </div>
+        
+        <div id="popup">
+            <div class="inner">
+                <h2 class="teal-c">닉네임 입력</h2>
+                <div class="d-flex row mt-4">
+                    <input type="text" id="nickname" class="form-control mb-2" placeholder="닉네임">
+                    <button id="btnLogin" class="btn btn-primary form-control">입장</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

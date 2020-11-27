@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+.sc-enter-active , .sc-leave-active {
+    transition: opacity .5s, transform .5s;
+}
+
+.sc-enter {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.sc-leave-to {
+    opacity: 0;
+    transform: translateX(-100%);
+}

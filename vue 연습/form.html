@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <textarea cols="30" rows="10" v-model="text"></textarea>
+        {{text}}
+
+        <div v-for="name in nameList">
+            <input type="checkbox" :value="name" v-model="checkedValue">
+            <label>{{name}}</label>
+        </div>
+
+        <!-- <input type="checkbox" value="안진우" v-model="checkedValue">
+        <label>안진우</label>
+        <input type="checkbox" value="박수진" v-model="checkedValue">
+        <label>박수진</label>
+        <input type="checkbox" value="전전제" v-model="checkedValue">
+        <label>전전제</label>
+        <input type="checkbox" value="박지호" v-model="checkedValue">
+        <label>박지호</label> -->
+
+        {{checkedValue}}
+        <hr>
+
+        <div v-for="name in nameList">
+            <input type="radio" :value="name" v-model="picked" name="radio">
+            <label>{{name}}</label>
+        </div>
+        {{picked}}        
+        <hr>
+
+        <select v-model="selected">
+            <option :value="name" v-for="name in nameList">{{name}}</option>
+        </select>
+        {{selected}}
+        <hr>
+    </div>
+
+    <script>
+
+        let v = new Vue({
+
+            el : "#app",
+            data : {
+                text : "",
+                checkedValue : [],
+                picked : null,
+                nameList : [
+                    "정재성",
+                    "안지누",
+                    "전전제",
+                    "박지호",
+                    "박수진"
+                    ],
+                selected : null
+            }
+
+        });
+
+    </script>
+</body>
+</html>

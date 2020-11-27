@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>채팅서버</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="/app.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="/app.js"></script>
+</head>
+
+<body>
+    <div id="chatApp">
+        <div class="container">
+            <div class="menu-box">
+                <div id="chat">
+                    <div class="chat_header">
+                        <p>안진우</p>
+                        <i class="far fa-trash-alt"></i>
+                    </div>
+                    <div id="msgBox">
+                        <!-- <div class="news"><span>안진우</span> 님이 방에 입장하셨습니다.</div> -->
+                        <div class="msg">어서오세요</div>
+                        <div class="msg my">안녕하세요</div>
+                    </div>
+                    <div id="inputBox">
+                        <button id="btnSend"><i class="fas fa-paperclip"></i></button>
+                        <input type="text" id="msg" placeholder="type a message">
+                    </div>
+                </div>
+                <div id="userList">
+                    <div class="user_list_header">
+                        <input type="text" placeholder="Search..">
+                    </div>
+                    <div class="user_list_box">
+                        <div class="user my">
+    
+                        </div>
+                    </div>
+                    <div class="user_list_footer">
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <transition name="yy">
+            <div id="popup" v-if="!isLogin">
+                <div class="inner">
+                    <img src="/popup.jpg" alt="">
+                    <p>Hello World</p>
+                    <span>Lorem ipsum dolor sit amet consectetur, <br>adipisicing elit. </span>
+                    <div class="right_box">
+                        <h2>Register</h2>
+                        <p>Lorem ipsum dolor sit <span>amet</span> consectetur.</p>
+                        <span>Nickname</span>
+                        <input type="text" id="nickname" v-model="nickName" @keydown.enter="login">
+                        <span>Passowrd</span>
+                        <input type="text">
+                        <span>id</span>
+                        <input type="text">
+                        <span>sadads</span>
+                        <input type="text">
+                        <button id="btnLogin" @click="login">Enter</button>
+                    </div>
+                </div>
+            </div>
+        </transition>
+        
+    </div>
+    
+</body>
+
+</html>

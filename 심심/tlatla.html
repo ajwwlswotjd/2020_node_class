@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수업시간에 심심해서 만든 그림판</title>
+    <link rel="stylesheet" href="tlatla.css">
+    <script src="TlatlaApp.js"></script>
+</head>
+<body>
+
+    <table id="control-table" border="1">
+        <tbody>
+            <tr>
+                <th>색</th>
+                <td>
+                    <input type="color" id="color">
+                </td>
+            </tr>
+            <tr>
+                <th>굵기</th>
+                <td style="display: flex; flex-direction: column; align-items: center;">
+                    <!-- <input type="text" value="1" id="width"> -->
+                    <span id="width-span">3</span>
+                    <input type="range" value="3" min="1" max="10" id="width" step="1">
+                </td>
+            </tr>
+            <tr>
+                <th>기능</th>
+                <td>
+                    <button class="" id="circle">원</button>
+                    <button class="" id="rect">사각형</button>
+                    <button class="active" id="draw">그리기</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="custom-btn" id="clear">싹다 지우기</button>
+    <button class="custom-btn" id="save">이미지 뽑기</button>
+    <canvas width="700" height="700" id="canvas"></canvas>
+
+</body>
+</html>

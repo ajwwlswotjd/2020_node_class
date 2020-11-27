@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .on {
+            background-color: #dfdfdf;
+        }
+
+        .item {
+            transition: background-color .3s, left 1s, top 1s;
+        }
+
+        .fix {
+            background-color: red;
+            color: #fff;
+        }
+
+        #userList {
+            width: 80%;
+            display: grid;
+            grid-template-rows: 50px;
+            grid-template-columns: repeat(5,1fr);
+            grid-gap: 10px;
+        }
+
+        #userList > .item {
+            height: 50px;
+            border: 1px solid #ddd;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #btnStop {
+            padding: 8px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border:none;
+            border-radius: 2px;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        #btnStop:hover {
+            background-color: #479ee5;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+        }
+
+        .top {
+            border:2px solid #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bottom {
+            border : 2px solid #000;
+            border-top: none;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #selectedUserList {
+            width: 80%;
+            display: grid;
+            grid-template-rows: 50px;
+            grid-template-columns: repeat(5,1fr);
+            grid-gap: 10px;
+        }
+
+        #selectedUserList > .item {
+            height: 50px;
+            border: 1px solid #ddd;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+    </style>
+</head>
+<body>
+
+
+    <div class="top">
+        <button id="btnStop" data-status="0">시작</button>
+        <ul id="userList"></ul>
+    </div>
+
+    <div class="bottom">
+        <ul id="selectedUserList"></ul>
+    </div>
+
+
+    <script>
+
+        const log = console.log;
+
+        class App {
+            constructor(){
+                this.nameList = ["박태양","강은진","김가현","김영현","김찬영","김창현","박민지","박명재","박수진","박지호","이수안","안진우","이유진","이준영","임상언","임채영","전제","정나영","정재성","최승민","하늘새미","한다원","조한슬"];
+                this.userListDom = document.querySelector('#userList');
+                this.list;
+                this.idx = 0;
+                this.before;
+                this.timer;
+                
+                this.init();
+            }
+
+            init(){
+                this.render();
+                this.addEvent();
+            }  
+
+            render(){
+                this.userListDom.innerHTML = this.nameList.map(x=> this.makeTemplate(x)).join('');
+                this.list = document.querySelectorAll("#userList >  .item");
+                this.before = this.list[0];
+            }
+
+            move = e => {
+                this.idx++;
+                if(this.idx >= this.list.length) this.idx = 0;
+                this.before.classList.remove("on");
+                this.list[this.idx].classList.add("on");
+                this.before = this.list[this.idx];
+            }
+
+            addEvent(){
+                document.querySelector("#btnStop").addEventListener("click", this.stopBtnClickEventHanlder);
+            }
+
+            stopBtnClickEventHanlder = e => {
+                if(e.currentTarget.dataset.status == 0){ // 대기상태 => 현재 진행중으로
+                    e.currentTarget.dataset.status = 1;
+                    e.currentTarget.innerHTML = "뽑기";
+                    this.timer = setInterval( this.move , 100 );
+                }
+                else if(e.currentTarget.dataset.status == 1){ // 현재 진행중 => 대기상태로
+                    e.currentTarget.dataset.status = 2;
+                    e.currentTarget.innerHTML = "뽑는중";
+                    clearInterval(this.timer);
+                    this.stopTimeOut(200);
+                }
+            }
+
+            async stopTimeOut(time){
+                if(time >= 1000){
+                    this.list[this.idx].classList.add("fix");
+                    await this.sleep(100);
+                    this.reset();
+                    return;
+                }
+                setTimeout(()=>{
+                    this.move();
+                    this.stopTimeOut( time + 100 );
+                } , time );
+            }
+
+            makeTemplate(user){
+                let li = document.createElement("li");
+                li.classList.add("item");
+                li.innerHTML = user;
+                return li.outerHTML;
+            }
+
+            reset(){
+
+                // 이 함수는 다 끝나고나서 실행될 함수입니다.
+
+                let chosen = this.list[this.idx];
+                let { x , y , width , height , top , left  } = chosen.getBoundingClientRect();
+                chosen.style.position = "fixed";
+                chosen.style.width = width + "px";
+                chosen.style.height = height + "px";
+                chosen.style.left = x + "px";
+                chosen.style.top = y + "px";
+
+                let vDom = document.createElement("li");
+                vDom.classList.add("item");
+                document.querySelector("#selectedUserList").appendChild(vDom);
+                let { x : v_x , y : v_y , width : v_width , height : v_height , top : v_top , left : v_left } = vDom.getBoundingClientRect();
+                vDom.remove();
+                
+                chosen.style.left = v_x + "px";
+                chosen.style.top = v_y + "px";
+
+                setTimeout(() => {
+
+                    chosen.style.position = "relative";
+                    chosen.style.left = 0 + "px";
+                    chosen.style.top = 0 + "px";
+                    chosen.classList.remove("fix");
+                    chosen.classList.remove("on");
+                    document.querySelector('#selectedUserList').appendChild(chosen);
+                    this.list = document.querySelectorAll("#userList >  .item");
+                    document.querySelector('#btnStop').innerHTML = "재시작";
+                    document.querySelector('#btnStop').dataset.status = 0;
+
+                }, 1000);
+            }
+
+            sleep(time){
+                return new Promise((res,rej)=>{
+                    setTimeout(()=>{ res(true) },time);
+                });
+            }
+        }
+
+        window.addEventListener("load",()=>{
+            window.app = new App();
+        });
+    </script>
+</body>
+</html>

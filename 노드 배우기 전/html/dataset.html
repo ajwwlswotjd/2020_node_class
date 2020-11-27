@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <ul id="list">
+        <li data-idx="1">1번 아이템입니다.</li>
+        <li data-idx="2">2번 아이템입니다.</li>
+        <li data-idx="3">3번 아이템입니다.</li>
+        <li data-idx="4">4번 아이템입니다.</li>
+    </ul>
+
+    <script>
+        const log = console.log;
+        const dir = console.dir;
+        const UL = document.querySelector("#list");
+
+        UL.addEventListener("click",(e)=>{
+            let idx = e.target.dataset.idx;
+            dir(idx);
+        });
+
+    </script>
+    
+</body>
+</html>

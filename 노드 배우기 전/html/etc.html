@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function makeTemplate( {id , title , content} ){
+            return `<div class="item" data-id="${id}">
+                <h4 class="title">${title}</h4>
+                <span class="msg">${content}</span>
+            </div>`;
+        }
+
+        let list = [
+                {id:4,title:"제목입니다4.",content:"내용입니다4."},
+                {id:5,title:"제목입니다5.",content:"내용입니다5."},
+                {id:6,title:"제목입니다6.",content:"내용입니다6."},
+                {id:7,title:"제목입니다7.",content:"내용입니다7."},
+                {id:8,title:"제목입니다8.",content:"내용입니다8."},
+                {id:9,title:"제목입니다9.",content:"내용입니다9."},
+            ];
+        let str = list.map(x=> makeTemplate(x) ).join('');
+        console.log(str);
+
+    </script>
+</body>
+</html>
