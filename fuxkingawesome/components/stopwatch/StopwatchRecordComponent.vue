@@ -12,7 +12,9 @@ export default {
     },
     methods : {
         removeClick(){
+
             this.$emit("remove" , this.lab );
+            
         }
     }
 }
